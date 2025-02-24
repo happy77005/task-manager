@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <script>
+        async function fetchTasks() {
+            const response = await fetch('/tasks');
+            const tasks = await response.json();
+            const taskList = document.getElementById('task-list');
+            taskList.innerHTML = '';
+            tasks.forEach(task => {
+                const taskItem = document.createElement('li');
+                taskItem.textContent = `${task.title} - ${task.description} - ${task.completed ? 'Completed' : 'Not Completed'}`;
+                taskList.appendChild(taskItem);
+            });
+        }
+
+        async function addTask() {
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+            const response = await fetch('/tasks', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, description, completed: false })
+            });
+            if (response.ok) {
+                fetchTasks();
+            }
+        }
+
+        window.onload = fetchTasks;
+    </script>
+</head>
+<body>
+    <h1>Task Manager</h1>
+    <ul id="task-list"></ul>
+    <h2>Add Task</h2>
+    <input type="text" id="title" placeholder="Title">
+    <input type="text" id="description" placeholder="Description">
+    <button onclick="addTask()">Add Task</button>
+</body>
+</html>
