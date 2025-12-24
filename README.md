@@ -51,5 +51,42 @@ This application provides basic task management functionality through RESTful AP
 ---
 
 ### Running the Backend
+Clone the repository
+git clone https://github.com/happy77005/task-manager.git
+cd task-manager/backend
+- Start the application
+mvn spring-boot:run
+- Application runs on
+http://localhost:8080
+---
+### Running the Frontend
+- Navigate to the frontend directory
+cd task-manager/frontend
+- Open `index.html` in a browser or serve it using a local server
+---
+## API Endpoints
+- GET /tasks  
+  Retrieve all tasks
 
-- Clone the repository
+- POST /tasks  
+  Create a new task
+
+- PUT /tasks/{id}  
+  Update an existing task
+
+- DELETE /tasks/{id}  
+  Remove a task
+---
+## Future Improvements
+
+- Persistent database integration
+- User authentication and authorization
+- Improved frontend UI
+- Validation and global exception handling
+- Docker and cloud deployment support
+---
+## License
+This project is licensed under the MIT License.
+---
+## Author
+Hari Preetham
